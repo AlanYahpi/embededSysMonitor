@@ -5,7 +5,7 @@ Age: 15
 High School
 
 ## Instalation
-This is a basic C program that reqires standard C libreries in **gcc** and being a *linux based system* to work. Depends your system, you might ensure being able to open **proc** files (*/proc*); you can try using `cat /proc/stat` , for example. It is going to be read /proc/  
+This is a basic C program that reqires standard C libraries in **gcc** and being a *linux based system* to work. Depends your system, you might ensure being able to open **proc** files (*/proc*); you can try using `cat /proc/stat` , for example. It is going to be read /proc/  
 *meminfo  
 *stat  
 
@@ -14,7 +14,7 @@ It can be insalled with a simple
 gcc main.c -o greatProgram
 ```
 ## Notes
-Today, that is all.
+Today, that is all.  
 To do:
 
 - Implement configration sheet.
@@ -24,7 +24,7 @@ To do:
 Software used:
 - Kitty Terminal
 - Neovim
-- GCC
+- GCC (Gnu Cool Code)
 - Valgrind
 - Fish as Shell
 - Bash language for automating execution
@@ -33,6 +33,6 @@ Software used:
 This project is licensed under the unlicense license.
 I don't care, I'll eat from my emeddedd systems hardware-software implementations, my codes are yours.
 ## Contact
-Created by Alan
+Created by Alan  
 (https://github.com/AlanYahpi)
 
