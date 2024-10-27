@@ -5,14 +5,14 @@ Age: 15
 High School
 
 ## Instalation
-This is a basic C program that reqires standard C libreries in **gcc** and being a *linux based system* to work. Depends your system, you might ensure being able to open **proc** files *(/proc)*; you can try using 'cat /proc/stat' , for example. It is going to be read /proc/
-*meminfo
-*stat
+This is a basic C program that reqires standard C libreries in **gcc** and being a *linux based system* to work. Depends your system, you might ensure being able to open **proc** files (*/proc*); you can try using `cat /proc/stat` , for example. It is going to be read /proc/  
+*meminfo  
+*stat  
 
 It can be insalled with a simple
-'''bash
+```bash
 gcc main.c -o greatProgram
-
+```
 ## Notes
 Today, that is all.
 To do:
@@ -25,8 +25,8 @@ Software used:
 - Kitty Terminal
 - Neovim
 - GCC
-- valgrind
-- fish as Shell
+- Valgrind
+- Fish as Shell
 - Bash language for automating execution
 
 ## License
