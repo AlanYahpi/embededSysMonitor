@@ -3,15 +3,27 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define KBGiB 1073741.824
+#if __has_include("config.h")
+#include "config.h"
+#endif
+
+#ifndef UNIT
+#define UNIT 1073741.824
+#endif
+
+#ifndef UNITDIS
+#define UNITDIS "GiB"
+#endif
 
 
-void getMEM(long buffer[10]){
+
+void getMEM(int buffer[10]){
 	char string[256];
 	int i = 0;
 	char * token;
 
 	FILE * procf = fopen("/proc/meminfo", "r");
+	fseek(procf,0,SEEK_SET);
 
 	while (fgets(string, sizeof(string), procf) != NULL && i<5 ){
 		strtok(string, " ");
@@ -38,12 +50,12 @@ void getMEM(long buffer[10]){
 	}
 	
 	token = 0;
-	fseek(procf,0,SEEK_SET);
+
 	fclose(procf);
 	
 }
 
-void getCPU(long buffer[4]){
+void getCPU(int buffer[4]){
 	
 	FILE * statProc = fopen("/proc/stat", "r");
 	int i=0;
@@ -72,11 +84,12 @@ void getCPU(long buffer[4]){
 }
 int main (){
 	
-	long cpuThreadA[5];
-	long cpuThreadB[5];	//5 is the number of items, indexed from 0 to 4
+	int cpuThreadA[5];
+	int cpuThreadB[5];	//5 is the number of items, indexed from 0 to 4
 	
-	long memVal[10]; 	//memory values
-		
+	int memVal[10]; 	//memory values
+	
+
 
 	//update loop
 	while (1){
@@ -93,8 +106,13 @@ int main (){
 	int initialRead = (cpuThreadA[1] + cpuThreadA[3] + cpuThreadA[4] ) ;
 	int secondRead = (cpuThreadB[1] + cpuThreadB[3] + cpuThreadB[4] ) ;
 	int totalTime = secondRead - initialRead;
-	int idle = cpuThreadB[4] - cpuThreadA[4];
-	double percentageCPU = ((double) (totalTime - idle) / totalTime * 100);
+
+	float percentageCPU = (float)  
+
+			(totalTime - 
+			(cpuThreadB[4] - cpuThreadA[4])		//idle
+			)
+			/ totalTime* 100;
 
 	
 
@@ -115,8 +133,11 @@ int main (){
 	
 	/* FORMULAS
 	 * Total use memmory = memtotal [0] - memfree [1]
+	 * Aviable = memfree[1] + buffers[3] + cached[4]
+	 *
 	 * Non cache/buffer memmory = total used memmory - (buffers [3] + cached [4])
 	 * Cached mem = cached [4] + SReclaimable[9] - shmem [6]
+	 *
 	 * swap = Swap total - Swap free (N/A)
 	 */
 
@@ -132,23 +153,19 @@ int main (){
 
 
 	int usedMem =  ( memVal[0] - memVal[1] ) ;
-	long nonBuffer = usedMem - (memVal[3] + memVal[4]);
-	long cached = memVal[4] + memVal[9] - memVal[6];
+	int nonBuffer = usedMem - (memVal[3] + memVal[4]);
 
 
 	//24 characters long
 	//computer procs
 	printf("MEMORY:\n\n");
 
-	printf("Non buffered:\t%0.2f GiB\n", nonBuffer / KBGiB);
-	printf("Cached:\t\t%0.2f GiB\n", cached / KBGiB);
-	printf("Others: \t%0.2f GiB\n", (usedMem - nonBuffer - cached)/ KBGiB  );
-	//add a function to disable others when is irrelevant
-
-	printf("Total used:\t%0.2f GiB\n", usedMem / KBGiB);
+	printf("Non buffered:\t%0.2f %s\n", nonBuffer / UNIT, UNITDIS);
+	printf("Available mem: \t%0.2f %s\n", memVal[2] / UNIT, UNITDIS);
+	printf("Total used:\t%0.2f GiB/%0.2f %s\n", usedMem / UNIT, memVal[0] / UNIT, UNITDIS);
 
 
-	}
+	} //infinite loop break
 
 
 return 0;
