@@ -56,13 +56,9 @@ The configuration script will calculate the correct denominator (also called div
 The program follows the next math:  
 
 For binary:  
-$$\frac{Kb}{1024000}$$
+$$\frac{Kb}{1024^n * 1000}$$  
 
-Also respresented as  
-$$
-\frac{Kb}{1024} \div 1000
-$$
-
+This converts KB into bytes and divide it by a power of **1024** that is represented as **n**. This **n** is what we select in the configuration script.  
 
 ## Notes
 Today, that is all.  
