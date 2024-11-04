@@ -1,8 +1,10 @@
 # Embedded system monitor
-System monitor for embedded applications as the first project i do to learn programming.  
+System monitor for embedded applications that displays CPU and memmory usage by reading `/proc` files. It aims for resorce efficiency and relevance of processes.  
+This is the first project I do to learn programming.  
 October/2024  
 Age: 15  
 High School  
+
 
 ## Philosophy
 This is my very first coding project for learning to code (I had no knowledge before) and it aims to the optimization an embedded system needs. Define "optimization" as the less resources the process needs to work and the most useful and prior data to be analyzed.  
@@ -65,6 +67,7 @@ Today, that is all.
 To do:
 
 - Add PID monitoring.
+- Try sing strcts.
 
 ## Aditional information
 Software used:
