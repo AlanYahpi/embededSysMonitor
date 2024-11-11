@@ -45,6 +45,9 @@ You can select which data unit you want to be displayed in the main program when
   
 The default unit (if the main program does not find a header) is GiB.  
 
+### Update interval
+The update interval can be adjusted, is asked in the tirth question in the configuration script and gotten in seconds.
+
 ## Working
 ### Main program
 The code opens /proc/  
