@@ -15,6 +15,9 @@
 #define UNITDIS "GiB"
 #endif
 
+#ifndef CPUTIME
+#define CPUTIME 1
+#endif
 
 
 void getMEM(int buffer[10]){
@@ -31,13 +34,10 @@ void getMEM(int buffer[10]){
 		buffer[i] = strtol(token, NULL, 10);
 		i++;
 	}	
-	
 		
 	for (int i = 5; i<21; i++){
-
 		fgets(string, sizeof(string), procf);
 	}
-
 
 	for (int i= 21, j = 5; i<26; i++){
 		strtok(string, " ");
@@ -96,7 +96,7 @@ int main (){
 
 
 	getCPU(cpuThreadA);
-	sleep(1);
+	sleep(CPUTIME);
 	getCPU(cpuThreadB);
 	
 
@@ -110,13 +110,12 @@ int main (){
 	float percentageCPU = (float)  
 
 			(totalTime - 
-			(cpuThreadB[4] - cpuThreadA[4])		//idle
-			)
+			(cpuThreadB[4] - cpuThreadA[4])	)	//idle
 			/ totalTime* 100;
 
 	
 
-	printf("COMPUTER PROCS\n");
+	printf("SYSTEM PROCS\n\n");
 
 
 	//if the percentage is -nun (the result of a bit of time between both cpu reads)

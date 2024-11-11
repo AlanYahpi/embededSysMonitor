@@ -53,12 +53,13 @@ void typeOfData(int * unit, char print[1], int * n){
 	}
 }
 
+
+
 int main(){
 	
 	char printBD[1];		//stores an 'i' to be printed in a guide text
 	int unitType = 0;		//	1 -> Binary	1024
 					//	2 -> Decimal	1000
-	
 	int unit = 0;			//	1 -> K
 					//	2 -> M
 					//	3 -> G
@@ -72,20 +73,31 @@ int main(){
 	while (unit == 0 && unitType != 0){
 		typeOfData(&unit, printBD, &n);		//asks for a unit type
 	}
-
-	if (unitType == 2){		// 	n-1
-		n--;
+	
+	int * cputime;
+	while (cputime == 0) {
+		printf("Setupdate interval -> ");
+		scanf("%i", &cputime);
 	}
+	printf("%i", cputime);
 
-	while (n != 0){			//  1000 OR 1024   ^ n
+	
+	if (unitType == 2){	n--; 	}  //n-1
+
+	while (n != 0){			//  ^ n
 		mult *= denom;
 		--n;
 	}
+	char display[4];
 
+	if (unitType == 1){		//if binary
+		mult = mult / 1000;
+		display[1] = 'i';
+	}
 
 	
 	//SETTING THE UNIT TYPE TO DISPLAY
-	char display[4];
+
 	
 	switch (unit){
 		case 1:
@@ -98,20 +110,12 @@ int main(){
 			display[0] = 'G';
 			break;
 	}
-	if (unitType == 1){
-		display[1] = 'i';
-	}
-
+	
 	
 
 
-	if (unitType == 1){
-	mult = mult / 1000;
-	}
-
-
 	FILE * configf = fopen("config.h", "w");
-	fprintf(configf, "#define UNIT %lf\n#define UNITDIS \"%sB\"", mult,display);
+	fprintf(configf, "#define UNIT %lf\n#define UNITDIS \"%sB\"\n#define CPUTIME %i", mult, display, cputime);
 	fclose(configf);
 return 0;
 }
