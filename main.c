@@ -92,8 +92,10 @@ void getCPU(int buffer[4]){
 int main (){
 	
 	int cpuThreadA[5], cpuThreadB[5], memVal[10], startPid;
+	
+	/* PID
 	startPID(&startPid);	
-
+*/
 
 	//update loop
 	while (1){
@@ -168,7 +170,7 @@ int main (){
 	printf("Total used:\t%0.2f / %0.2f %s\n", usedMem / UNIT, memVal[0] / UNIT, UNITDIS);
 
 	//PID
-	if (0){
+	/*
 
 	float UPtime;
 	uptimef(&UPtime);
@@ -177,7 +179,7 @@ int main (){
 	pid(startPid, UPtime);
 	//printf("Start PID: %ld\n", startPid);
 
-	}
+	*/
 	} //infinite loop break
 
 

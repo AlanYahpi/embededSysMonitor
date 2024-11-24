@@ -1,3 +1,4 @@
 .tmp/
 *.sh
 *.txt
+pid.h

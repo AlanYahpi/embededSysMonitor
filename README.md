@@ -69,7 +69,6 @@ This converts KB into bytes and divide it by a power of **1024** that is represe
 Today, that is all.  
 To do:
 
-- Add PID monitoring.
 - Try sing strcts.
 
 ## Aditional information
