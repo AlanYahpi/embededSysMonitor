@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
-
 int binDec(int * unitTy, char print[1], int * denom){
 	char input;
 	printf("Select a type of unit by pressing:\n");

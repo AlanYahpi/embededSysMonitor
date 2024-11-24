@@ -3,8 +3,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
 #if __has_include("config.h")
 #include "config.h"
+#endif
+
+#if __has_include("pid.h")
+#include "pid.h"
 #endif
 
 #ifndef UNIT
@@ -82,13 +87,12 @@ void getCPU(int buffer[4]){
 
 
 }
+
+
 int main (){
 	
-	int cpuThreadA[5];
-	int cpuThreadB[5];	//5 is the number of items, indexed from 0 to 4
-	
-	int memVal[10]; 	//memory values
-	
+	int cpuThreadA[5], cpuThreadB[5], memVal[10], startPid;
+	startPID(&startPid);	
 
 
 	//update loop
@@ -161,9 +165,19 @@ int main (){
 
 	printf("Non buffered:\t%0.2f %s\n", nonBuffer / UNIT, UNITDIS);
 	printf("Available mem: \t%0.2f %s\n", memVal[2] / UNIT, UNITDIS);
-	printf("Total used:\t%0.2f GiB/%0.2f %s\n", usedMem / UNIT, memVal[0] / UNIT, UNITDIS);
+	printf("Total used:\t%0.2f / %0.2f %s\n", usedMem / UNIT, memVal[0] / UNIT, UNITDIS);
 
+	//PID
+	if (0){
 
+	float UPtime;
+	uptimef(&UPtime);
+	//printf("uptime: %f", UPtime);
+
+	pid(startPid, UPtime);
+	//printf("Start PID: %ld\n", startPid);
+
+	}
 	} //infinite loop break
 
 
