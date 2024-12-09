@@ -1,13 +1,11 @@
 # Embedded system monitor
 System monitor for embedded applications that displays CPU and memmory usage by reading `/proc` files. It aims for resorce efficiency and relevance of processes.  
 This is the first project I do to learn programming.  
-October/2024  
-Age: 15  
-High School  
 
+![How it looks running](./docs/Preview.png)
 
 ## Philosophy
-This is my very first coding project for learning to code (I had no knowledge before) and it aims to the optimization an embedded system needs. Define "optimization" as the less resources the process needs to work and the most useful and prior data to be analyzed.  
+I aim to the optimization an embedded system needs: the less resources the process needs to work and the most useful data to be analyzed.  
 As this is a compiled language, I focus on minimalist in the compiled executable.
 
 ## Instalation
@@ -18,6 +16,14 @@ gcc main.c -o greatProgram
 ```
 
 ## Configuration
+
+### Monitoring PID
+You can monitor a PID writing it as an argument, for example:
+```bash
+./greatProgram 91363
+```
+where `91363` is the *PID*, in this case, of htop:
+![htop comparision](./docs/htopcomparition.png)
 
 ### Configuring scripts
 I am not incluiding none of this in the repository because you might want to set your own scripts based on your needings, nevertheless, I recommend using this scripts.  
@@ -31,9 +37,8 @@ gcc -o configEXE config.c && ./configEXE && rm configEXE && \
 You can use temporary directories if do not want to dirty your workspace. I used the following while developing:  
 ```bash
 mkdir -p .tmp
-gcc $1 -o .tmp/output && ./.tmp/output && rm -f .tmp/output && rmdir .tmp
+gcc main.c -o .tmp/output && ./.tmp/output && rm -f .tmp/output && rmdir .tmp
 ```
-Use `main.c` or `config.c` as an argument (`$ sh gcc.sh main.c`) for running them isolated, they will me executed and removed when finish, and you will not see any change in your directories.
 
 ### Selecting Data Unit
 You can select which data unit you want to be displayed in the main program when printing memory information:  
@@ -57,7 +62,7 @@ as the source of data. It is gotten, tokenize and converted from a characters ar
 
 ### Configuration
 #### To get data unit
-The configuration script will calculate the correct denominator (also called divider) to convert the original KB expresed by the /proc system. The denominator is defined in a new header file `config.h` for avoiding using variables that uses memory or reading configuration texts that consumes resources when reading and storing data. This way the data procesing is given to the compiler and the computer that will compile the program before its use in an embedded system.  
+The configuration script will calculate the correct denominator to convert the original KB expresed by the /proc system. The denominator is defined in a new header file `config.h` for avoiding using variables that uses memory or reading configuration texts that consumes resources when reading and storing data. This way the data procesing is given to the compiler and the computer that will compile the program before its use in an embedded system.  
 The program follows the next math:  
 
 For binary:  
@@ -67,9 +72,9 @@ This converts KB into bytes and divide it by a power of **1024** that is represe
 
 ## Notes
 Today, that is all.  
-To do:
+To do:  
 
-- Try sing strcts.
+- Find a job
 
 ## Aditional information
 Software used:
@@ -81,8 +86,4 @@ Software used:
 
 ## License
 This project is licensed under the unlicense license.
-I do not care about code licenses, my codes are yours.
-## Contact
-Created by Alan  
-https://github.com/AlanYahpi
 

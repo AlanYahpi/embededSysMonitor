@@ -23,6 +23,7 @@ int binDec(int * unitTy, char print[1], int * denom){
 			printf("Not a valid option\n\n");
 			break;}
 	}
+	return 0;
 }
 
 void typeOfData(int * unit, char print[1], int * n){
@@ -111,7 +112,7 @@ int main(){
 	
 
 
-	FILE * configf = fopen("config.h", "w");
+	FILE * configf = fopen("src/headers/config.h", "w");
 	fprintf(configf, "#define UNIT %lf\n#define UNITDIS \"%sB\"\n#define CPUTIME %i", mult, display, cputime);
 	fclose(configf);
 return 0;

@@ -8,8 +8,8 @@
 #include "config.h"
 #endif
 
-#if __has_include("pid.h")
-#include "pid.h"
+#if __has_include("headers/pid.h")
+#include "headers/pid.h"
 #endif
 
 #ifndef UNIT
@@ -89,13 +89,24 @@ void getCPU(int buffer[4]){
 }
 
 
-int main (){
-	
+int main (int argc, char * argv[]){
+
 	int cpuThreadA[5], cpuThreadB[5], memVal[10], startPid;
 	
-	/* PID
-	startPID(&startPid);	
-*/
+	// PID
+	char pidPath [50];
+	short pidB = 0;
+
+	if (argc > 1){
+	char pidPath [50] = "/proc/";
+	strcat(pidPath, argv[1]);
+	strcat(pidPath, "/stat");
+	
+	startPID(&startPid, pidPath, &pidB);	
+	}
+
+
+
 
 	//update loop
 	while (1){
@@ -127,7 +138,7 @@ int main (){
 	//if the percentage is -nun (the result of a bit of time between both cpu reads)
 	//infoms the usr to check the sleep time
 	if (percentageCPU == percentageCPU){
-		printf("CPU:\t\t%0.2f%\n\n", percentageCPU);
+		printf("CPU:\t\t%0.2f%%\n\n", percentageCPU);
 	} else {
 		printf("percentage of cpu != self, =nun\n\n");
 	}
@@ -170,16 +181,16 @@ int main (){
 	printf("Total used:\t%0.2f / %0.2f %s\n", usedMem / UNIT, memVal[0] / UNIT, UNITDIS);
 
 	//PID
-	/*
 
 	float UPtime;
 	uptimef(&UPtime);
 	//printf("uptime: %f", UPtime);
 
-	pid(startPid, UPtime);
+	if (pidB){
+		pid(startPid, UPtime, pidPath);
+	}
 	//printf("Start PID: %ld\n", startPid);
 
-	*/
 	} //infinite loop break
 
 
