@@ -4,8 +4,8 @@
 #include <unistd.h>
 
 
-#if __has_include("config.h")
-#include "config.h"
+#if __has_include("headers/config.h")
+#include "headers/config.h"
 #endif
 
 #if __has_include("headers/pid.h")

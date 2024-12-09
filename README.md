@@ -26,18 +26,14 @@ where `91363` is the *PID*, in this case, of htop:
 ![htop comparision](./docs/htopcomparition.png)
 
 ### Configuring scripts
-I am not incluiding none of this in the repository because you might want to set your own scripts based on your needings, nevertheless, I recommend using this scripts.  
-  
-For compiling and moving the executable to anywhere:  
+You can get the configuration program with:  
 ```bash
-gcc -o configEXE config.c && ./configEXE && rm configEXE && \
-    gcc -o main main.c \
-    && echo "The header files looks like: " && cat config.h && rm config.h
+make config
 ```
-You can use temporary directories if do not want to dirty your workspace. I used the following while developing:  
+This will give you a *src/headers/config.h* file that will set macros for saving resources.  
+Compile the main program with
 ```bash
-mkdir -p .tmp
-gcc main.c -o .tmp/output && ./.tmp/output && rm -f .tmp/output && rmdir .tmp
+make
 ```
 
 ### Selecting Data Unit
